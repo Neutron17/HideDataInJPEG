@@ -101,6 +101,7 @@ void parseArgs(int argc, const char *argv[]) {
             case 's':
                 buff_sz = atoi(optarg);
                 break;
+            case 'r': break;
             case '?':
                 if (optopt == 'f' || optopt == 's' || optopt == 'w') {
                     fprintf (stderr, "Option -%c requires an argument.\n", optopt);
