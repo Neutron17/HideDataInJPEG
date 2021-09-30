@@ -82,7 +82,7 @@ int main(int argc, const char *argv[]) {
 void parseArgs(int argc, const char *argv[]) {
     int c;
     char *cval = NULL;
-    while((c = getopt(argc, argv, "dw:Vf:s:v")) != -1) {
+    while((c = getopt(argc, argv, "drw:Vf:s:v")) != -1) {
         switch (c) {
             case 'v':
             case 'd':
