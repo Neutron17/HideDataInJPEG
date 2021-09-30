@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <sys/mman.h>
 #include <string.h>
 #include <unistd.h>
 #include <ctype.h>
@@ -18,7 +17,7 @@ typedef enum {
 void *memmem(const void *haystack, size_t haystacklen, const void *needle, size_t needlelen);
 void parseArgs(int argc, const char *argv[]);
 
-char *jpg_path = "/home/neutron/Downloads/Tux.jpg";
+char *jpg_path;
 bool isDebug = false;
 unsigned int buff_sz = 128;
 Mode mode = mod_read;
@@ -77,24 +76,15 @@ int main(int argc, const char *argv[]) {
         fprintf(nfptr, writeStr);
         fclose(nfptr);
     }
-    /*char needle[2] = { 0xff, 0xb9 };
-    off_t length = fseek(fptr, 0, SEEK_END);
-    void *data = mmap(NULL, length, PROT_READ, MAP_PRIVATE, fileno(fptr), 0);
-    void *ptr = memmem(data, length, needle, 2);
-    //size_t offset = ptr-data;
-    if(!ptr) return -2;
-    printf("%02x\n", *((char *)ptr+2));
-    munmap(data, length);*/
     fclose(fptr);
     return 0;
 }
 void parseArgs(int argc, const char *argv[]) {
     int c;
-            // 0000 -> read, 0001 -> write
-    unsigned char flags = 0b0000;
     char *cval = NULL;
-    while((c = getopt(argc, argv, "dw:Vf:s:")) != -1) {
+    while((c = getopt(argc, argv, "dw:Vf:s:v")) != -1) {
         switch (c) {
+            case 'v':
             case 'd':
                 isDebug = true;
                 break;
@@ -102,7 +92,6 @@ void parseArgs(int argc, const char *argv[]) {
                 cval = optarg;
                 break;
             case 'w':
-                //flags |= 0b0001;
                 mode = mod_write;
                 writeStr = optarg;
                 break;
