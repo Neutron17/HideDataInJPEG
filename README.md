@@ -5,6 +5,6 @@ Every JP(E)G has an End of Image [marker](https://en.wikipedia.org/wiki/JPEG#Syn
 
 ## Example
 ```bash
-./jpgh -f Tux.jpg -w Hello World
+./jpgh -f Tux.jpg -w "Hello World"
 ./jpgh -f Tux.jpg -r
 ```
