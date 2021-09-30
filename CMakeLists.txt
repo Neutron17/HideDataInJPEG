@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.10)
+# set(CMAKE_C_COMPILER /usr/bin/gcc)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -ggdb -O0")
+project ("c")
+include_directories(src/)
+file(GLOB SOURCES ${CMAKE_SOURCE_DIR} src/*.c)
+add_executable(c ${SOURCES})
